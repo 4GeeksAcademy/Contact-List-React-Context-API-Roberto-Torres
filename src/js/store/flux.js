@@ -90,16 +90,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 
-			modifyContact: async (id) => {
+			modifyContact: async (id, contact) => {
+				console.log(contact);
+				
 				try {
 					const response = await fetch('https://playground.4geeks.com/contact/agendas/robertotorres/contacts/' + id, {
 						method: "PUT",
-						body: JSON.stringify({
-							name: "store.contacts.name",
-							phone: "store.contacts.phone",
-							email: "store.contacts.email",
-							address: "store.contacts.address",
-						}),
+						body: JSON.stringify(
+							contact
+						),
 						headers: {
 							"Content-Type": "application/json"
 						}
@@ -112,7 +111,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					alert("Error modifying task")
 				}
 			},
-
 		}
 	};
 };
